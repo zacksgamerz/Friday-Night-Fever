@@ -1277,7 +1277,19 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
-
+		#if android
+		//mcontrols.visible = true;
+		new FlxTimer().start(0.1, function(tmr:FlxTimer)
+		{
+			mcontrols.alpha += 0.1;
+			if (mcontrols.alpha != 0.7){
+				tmr.reset(0.1);
+			}
+			else{
+				trace('aweseom.');
+			}
+		});
+		#end
 		generateStaticArrows(0);
 		generateStaticArrows(1);
 
@@ -2662,6 +2674,19 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+		#if android
+		//aaa
+		new FlxTimer().start(0.1, function(tmr:FlxTimer)
+		{
+			mcontrols.alpha -= 0.1;
+			if (mcontrols.alpha != 0){
+				tmr.reset(0.1);
+			}
+			else{
+				trace('aweseom.');
+			}
+		});
+		#end
 		if (!loadRep)
 			rep.SaveReplay(saveNotes);
 		else
