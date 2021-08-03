@@ -12,6 +12,8 @@ import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
+import flixel.input.actions.FlxActionInput;
+import ui.FlxVirtualPad;
 
 class MusicBeatState extends FlxUIState
 {
