@@ -102,7 +102,9 @@ class JukeboxState extends MusicBeatState
         overlay = new FlxSprite(0,0).loadGraphic(Paths.image('LMAO'));
         overlay.antialiasing = true;
         add(overlay);
-
+		#if android
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
         changeSong();
     }
 
