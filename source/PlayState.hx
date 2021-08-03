@@ -61,13 +61,18 @@ import Discord.DiscordClient;
 import Sys;
 import sys.FileSystem;
 #end
+#if android
+import ui.Mobilecontrols;
+#end
 
 using StringTools;
 
 class PlayState extends MusicBeatState
 {
 	public static var instance:PlayState = null;
-
+	#if mobileC
+	var mcontrols:Mobilecontrols; 
+	#end
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -996,6 +1001,29 @@ class PlayState extends MusicBeatState
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
+		#if android
+			mcontrols = new Mobilecontrols();
+			switch (mcontrols.mode)
+			{
+				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+					controls.setVirtualPad(mcontrols._virtualPad, FULL, NONE);
+				case HITBOX:
+					controls.setHitBox(mcontrols._hitbox);
+				default:
+			}
+			trackedinputs = controls.trackedinputs;
+			controls.trackedinputs = [];
+
+			var camcontrol = new FlxCamera();
+			FlxG.cameras.add(camcontrol);
+			camcontrol.bgColor.alpha = 0;
+			mcontrols.cameras = [camcontrol];
+
+			//mcontrols.visible = false;
+			mcontrols.alpha = 0;
+
+			add(mcontrols);
+		#end
 
 		startingSong = true;
 		
