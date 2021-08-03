@@ -43,7 +43,7 @@ class OptionsMenu extends MusicBeatState
 		]),
 		new OptionCategory("Mobile Controls", [
 			new MobileOptions("Change mobile controls.")
-		])
+		]),
 		new OptionCategory("Misc", [
 			new FPSOption("Toggle the FPS Counter"),
 			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
