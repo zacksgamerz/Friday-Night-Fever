@@ -502,7 +502,26 @@ class ReplayOption extends Option
 		return "Load replays";
 	}
 }
+class MobileOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	
+	public override function press():Bool
+	{
+		trace("switch");
+		FlxG.switchState(new options.CustomControlsState());
+		return false;
+	}
 
+	private override function updateDisplay():String
+	{
+		return "Change mobile controls.";
+	}
+}
 class AccuracyDOption extends Option
 {
 	public function new(desc:String)
