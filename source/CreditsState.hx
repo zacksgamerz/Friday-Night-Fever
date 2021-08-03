@@ -97,13 +97,15 @@ class CreditsState extends MusicBeatState
         description.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.GRAY, CENTER, OUTLINE, FlxColor.BLACK);
         description.scrollFactor.set();
         add(description);
-
+		#if android
+		addVirtualPad(UP_DOWN, A_B);
+		#end
         changeSelection();
     }
 
     override function update(elapsed:Float)
     {
-        if (FlxG.keys.justPressed.ESCAPE)
+        if (controls.BACK)
         {
             FlxG.switchState(new MainMenuState());
         }
